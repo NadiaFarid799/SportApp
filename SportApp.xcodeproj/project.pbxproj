@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2270E5212DD7749800E496C8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270E51F2DD7749800E496C8 /* HomeViewController.swift */; };
+		2270E5222DD7749800E496C8 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2270E5202DD7749800E496C8 /* HomeViewController.xib */; };
 		EFE725702DD68476005D99C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE7256F2DD68476005D99C5 /* AppDelegate.swift */; };
 		EFE725722DD68476005D99C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE725712DD68476005D99C5 /* SceneDelegate.swift */; };
 		EFE725742DD68476005D99C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE725732DD68476005D99C5 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2270E51F2DD7749800E496C8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2270E5202DD7749800E496C8 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		EFE7256C2DD68476005D99C5 /* SportApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFE7256F2DD68476005D99C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFE725712DD68476005D99C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2270E51E2DD7746700E496C8 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				2270E51F2DD7749800E496C8 /* HomeViewController.swift */,
+				2270E5202DD7749800E496C8 /* HomeViewController.xib */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
 		EFE725632DD68476005D99C5 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +96,7 @@
 		EFE725872DD686AB005D99C5 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				2270E51E2DD7746700E496C8 /* home */,
 				EFE725882DD68700005D99C5 /* testViewController.swift */,
 				EFE725892DD68700005D99C5 /* testViewController.xib */,
 			);
@@ -150,6 +164,7 @@
 				EFE7257F2DD6847A005D99C5 /* LaunchScreen.storyboard in Resources */,
 				EFE7257C2DD6847A005D99C5 /* Assets.xcassets in Resources */,
 				EFE7258B2DD68700005D99C5 /* testViewController.xib in Resources */,
+				2270E5222DD7749800E496C8 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +180,7 @@
 				EFE7257A2DD68476005D99C5 /* SportApp.xcdatamodeld in Sources */,
 				EFE7258A2DD68700005D99C5 /* testViewController.swift in Sources */,
 				EFE725722DD68476005D99C5 /* SceneDelegate.swift in Sources */,
+				2270E5212DD7749800E496C8 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +323,6 @@
 				INFOPLIST_FILE = SportApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
-				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -335,7 +350,6 @@
 				INFOPLIST_FILE = SportApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
-				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
