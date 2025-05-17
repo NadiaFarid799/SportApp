@@ -18,8 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let rootViewController = testViewController()
-        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+        
+        //MARK: Set tabBarController as root view controller
+        window?.rootViewController = UINavigationController(rootViewController: setupTabBar())
         window?.makeKeyAndVisible()
     }
 
@@ -52,6 +53,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
+    
+    // MARK: this function is responabale for setting up every detail related to tab bar
+    func setupTabBar() -> UITabBarController {
+        
+        //MARK: Load view controllers from XIBs
+        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+        let favoritesVC = FavoritesViewController(nibName: "FavoritesViewController", bundle: nil)
+        
+        //MARK: Set Tab Bar Items
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star"), tag: 1)
+        
+        //MARK: Create Tab Bar Controller
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [homeVC, favoritesVC]
+        
+        // MARK: Set Tab Bar Appearance
+        tabBarController.tabBar.tintColor = .systemPurple
+        tabBarController.tabBar.unselectedItemTintColor = .lightGray
+        
+        return tabBarController
     }
 
 

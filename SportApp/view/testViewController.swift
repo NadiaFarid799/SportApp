@@ -19,8 +19,8 @@ class testViewController: UIViewController {
     
     
     @IBAction func goToNext(_ sender: Any) {
-        let myVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-        self.navigationController?.pushViewController(myVC, animated: true)
+//        let myVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+//        self.navigationController?.pushViewController(myVC, animated: true)
     }
     
 }
