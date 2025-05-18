@@ -1,10 +1,3 @@
-//
-//  HomeViewController.swift
-//  SportApp
-//
-//  Created by Macos on 16/05/2025.
-//
-
 import UIKit
 
 class HomeViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {

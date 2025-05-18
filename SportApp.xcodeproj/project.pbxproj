@@ -13,7 +13,6 @@
 		2270E5312DD7D29400E496C8 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2270E52F2DD7D29400E496C8 /* FavoritesViewController.xib */; };
 		2270E5342DD7EEE800E496C8 /* SportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270E5322DD7EEE800E496C8 /* SportViewCell.swift */; };
 		2270E5352DD7EEE800E496C8 /* SportViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2270E5332DD7EEE800E496C8 /* SportViewCell.xib */; };
-		2270E5382DD8049A00E496C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270E5372DD8049A00E496C8 /* Constants.swift */; };
 		2270E53A2DD804E100E496C8 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270E5392DD804E100E496C8 /* Sport.swift */; };
 		EFE725702DD68476005D99C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE7256F2DD68476005D99C5 /* AppDelegate.swift */; };
 		EFE725722DD68476005D99C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE725712DD68476005D99C5 /* SceneDelegate.swift */; };
@@ -32,7 +31,6 @@
 		2270E52F2DD7D29400E496C8 /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
 		2270E5322DD7EEE800E496C8 /* SportViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewCell.swift; sourceTree = "<group>"; };
 		2270E5332DD7EEE800E496C8 /* SportViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SportViewCell.xib; sourceTree = "<group>"; };
-		2270E5372DD8049A00E496C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2270E5392DD804E100E496C8 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		EFE7256C2DD68476005D99C5 /* SportApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFE7256F2DD68476005D99C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +55,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220D5EAC2DD9501200D9E403 /* leagues */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = leagues;
+			sourceTree = "<group>";
+		};
+		220D5EAE2DD950FC00D9E403 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				2270E5392DD804E100E496C8 /* Sport.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		2270E51E2DD7746700E496C8 /* home */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,8 +93,7 @@
 		2270E5362DD8047400E496C8 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				2270E5372DD8049A00E496C8 /* Constants.swift */,
-				2270E5392DD804E100E496C8 /* Sport.swift */,
+				220D5EAE2DD950FC00D9E403 /* models */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -129,6 +141,7 @@
 		EFE725872DD686AB005D99C5 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				220D5EAC2DD9501200D9E403 /* leagues */,
 				2270E5232DD79A5600E496C8 /* favorites */,
 				2270E51E2DD7746700E496C8 /* home */,
 				EFE725882DD68700005D99C5 /* testViewController.swift */,
@@ -220,7 +233,6 @@
 				EFE7258A2DD68700005D99C5 /* testViewController.swift in Sources */,
 				EFE725722DD68476005D99C5 /* SceneDelegate.swift in Sources */,
 				2270E52A2DD7D25700E496C8 /* HomeViewController.swift in Sources */,
-				2270E5382DD8049A00E496C8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
