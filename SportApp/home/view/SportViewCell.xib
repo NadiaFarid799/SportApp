@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sportCell" id="gTV-IL-0wX" customClass="SportViewCell" customModule="SportApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="190" height="330"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="190" height="330"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tennis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyC-Cv-W0F">
+                        <rect key="frame" x="8" y="198" width="174" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0v-XE-vJY">
+                        <rect key="frame" x="8" y="230" width="174" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="8Kl-kf-a02"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auz-GM-jIF">
+                        <rect key="frame" x="8" y="288" width="174" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="auz-GM-jIF" secondAttribute="height" multiplier="87:17" id="3um-Hb-ZkX"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Explore">
+                            <color key="baseBackgroundColor" red="0.71383277109999999" green="0.30397244629999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </buttonConfiguration>
+                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DeL-aU-DCf">
+                        <rect key="frame" x="0.0" y="0.0" width="190" height="190"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="DeL-aU-DCf" secondAttribute="height" multiplier="1:1" id="zhK-Bm-b35"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="L0v-XE-vJY" firstAttribute="top" secondItem="SyC-Cv-W0F" secondAttribute="bottom" constant="8" id="0Ph-Ux-aDw"/>
+                <constraint firstItem="auz-GM-jIF" firstAttribute="top" secondItem="L0v-XE-vJY" secondAttribute="bottom" constant="8" id="3Yp-Um-JeF"/>
+                <constraint firstItem="SyC-Cv-W0F" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="46e-cW-RZH"/>
+                <constraint firstAttribute="trailing" secondItem="L0v-XE-vJY" secondAttribute="trailing" constant="8" id="62c-SM-p1p"/>
+                <constraint firstItem="auz-GM-jIF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Nae-XW-SmW"/>
+                <constraint firstItem="DeL-aU-DCf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="OcN-Xq-jkN"/>
+                <constraint firstAttribute="trailing" secondItem="auz-GM-jIF" secondAttribute="trailing" constant="8" id="U4Z-lv-C0m"/>
+                <constraint firstAttribute="trailing" secondItem="SyC-Cv-W0F" secondAttribute="trailing" constant="8" id="ZKZ-ln-0sd"/>
+                <constraint firstItem="DeL-aU-DCf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="eLW-eA-T1z"/>
+                <constraint firstAttribute="trailing" secondItem="DeL-aU-DCf" secondAttribute="trailing" id="gcd-Sn-GNq"/>
+                <constraint firstItem="SyC-Cv-W0F" firstAttribute="top" secondItem="DeL-aU-DCf" secondAttribute="bottom" constant="8" id="mjs-R0-3Wz"/>
+                <constraint firstAttribute="bottom" secondItem="auz-GM-jIF" secondAttribute="bottom" constant="8" id="rh8-1X-HwT"/>
+                <constraint firstItem="L0v-XE-vJY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="t6n-ie-e1d"/>
+            </constraints>
+            <connections>
+                <outlet property="sportDesc" destination="L0v-XE-vJY" id="Aje-jr-CRK"/>
+                <outlet property="sportImage" destination="DeL-aU-DCf" id="w2d-SJ-Q90"/>
+                <outlet property="sportName" destination="SyC-Cv-W0F" id="zBh-ub-kmc"/>
+            </connections>
+            <point key="canvasLocation" x="-235.11450381679387" y="-8.4507042253521139"/>
+        </collectionViewCell>
+    </objects>
+</document>
