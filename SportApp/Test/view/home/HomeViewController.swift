@@ -18,8 +18,9 @@ class HomeViewController: UIViewController {
 
     
     @IBAction func goToNextPage(_ sender: Any) {
-        
-        
+        let myVC = LeagueDetailsCollectionViewController(nibName: "LeagueDetailsCollectionViewController", bundle: nil)
+        self.navigationController?.pushViewController(myVC, animated: true)
+    }
     }
     
-}
+
