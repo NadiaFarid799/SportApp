@@ -94,6 +94,7 @@
 		EFB912B62DD9156200FA2D28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EF9F297B2DD7971C000F031A /* UpEventCollectionViewCell.swift */,
 				EFB912BA2DD915E100FA2D28 /* Event.swift */,
 				EFB912BC2DD915F500FA2D28 /* Team.swift */,
 			);
@@ -105,6 +106,9 @@
 			children = (
 				EF9F29842DD7A3E4000F031A /* LeagueDetailsCollectionViewController.xib */,
 				EF9F29832DD7A3E4000F031A /* LeagueDetailsCollectionViewController.swift */,
+				EF9F297C2DD7971C000F031A /* UpEventCollectionViewCell.xib */,
+				EFB912C62DD927B100FA2D28 /* ImageCollectionViewCell.swift */,
+				EFB912C72DD927B100FA2D28 /* ImageCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -153,10 +157,6 @@
 				EFE7257D2DD6847A005D99C5 /* LaunchScreen.storyboard */,
 				EFE725802DD6847A005D99C5 /* Info.plist */,
 				EFE725782DD68476005D99C5 /* SportApp.xcdatamodeld */,
-				EF9F297C2DD7971C000F031A /* UpEventCollectionViewCell.xib */,
-				EF9F297B2DD7971C000F031A /* UpEventCollectionViewCell.swift */,
-				EFB912C62DD927B100FA2D28 /* ImageCollectionViewCell.swift */,
-				EFB912C72DD927B100FA2D28 /* ImageCollectionViewCell.xib */,
 			);
 			path = SportApp;
 			sourceTree = "<group>";
