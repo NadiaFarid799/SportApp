@@ -379,31 +379,17 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
                   let event = latestEvents[indexPath.item]
                 cell.configureLate(with: event)
 
-//                  cell.homeTeamLabel.text = event.strEvent.components(separatedBy: " vs ").first
-//                  cell.awayTeamLabel.text = event.strEvent.components(separatedBy: " vs ").last
-//                  cell.homeScoreLabel.text = "\(event.intHomeScore ?? 0)"
-//                  cell.awayScoreLabel.text = "\(event.intAwayScore ?? 0)"
-//                  cell.dateLabel.text = event.dateEvent
-//                  cell.timeLabel.text = event.strTime
-//                  // Load images asynchronously
-//                  loadImage(from: event.homeTeamImageURL, into: cell.homeImageView)
-//                  loadImage(from: event.awayTeamImageURL, into: cell.awayImageView)
                   return cell
 
               case .teams:
                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamImageCell", for: indexPath) as! ImageCollectionViewCell
-                //  let team = teams[indexPath.item]
-//                  // Load image asynchronously
-//                  loadImage(from: team.teamBadgeURL, into: cell.teamImageView)
+                  let team = teams[indexPath.item]
+                  cell.configure(with:team)
+
                   return cell
               }
           }
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
-//
-//        // Configure the cell
-//
-//        return cell
-    
+
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         

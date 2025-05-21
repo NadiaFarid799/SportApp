@@ -38,12 +38,7 @@ class UpEventCollectionViewCell: UICollectionViewCell {
         score1_label.text = event.event_final_result
 
 
-        // Hide score labels if scores are not available
-//        score1_label.isHidden = true
-//        score2_label.isHidden = true
-//        dash_label.isHidden = true
 
-        // Optionally show VS
         vs_label.text = "VS"
         
         if let team1URLString = event.home_team_logo, let team1URL = URL(string: team1URLString) {
@@ -58,14 +53,10 @@ class UpEventCollectionViewCell: UICollectionViewCell {
                 team2_image_view.image = UIImage(named: "placeholder")
             }
 
-        // TODO: Set team images if available (use Kingfisher or URLSession)
        
     
 
 
-//        // TODO: Set team images if available (use Kingfisher or URLSession)
-//        team1_image_view.image = UIImage(named: "placeholder") // fallback
-//        team2_image_view.image = UIImage(named: "placeholder")
     }
     
     func configureLate(with event: Event) {
@@ -76,14 +67,7 @@ class UpEventCollectionViewCell: UICollectionViewCell {
         team2_name.text = event.event_away_team  ?? "Team 2"
         score1_label.text = event.event_final_result
         
-        
-
-        // Hide score labels if scores are not available
-//        score1_label.isHidden = true
-//        score2_label.isHidden = true
-//        dash_label.isHidden = true
-
-        // Optionally show VS
+    
         vs_label.text = "VS"
         
         
@@ -99,9 +83,9 @@ class UpEventCollectionViewCell: UICollectionViewCell {
                 team2_image_view.image = UIImage(named: "placeholder")
             }
 
-        // TODO: Set team images if available (use Kingfisher or URLSession)
        
     }
+    
 
 
 }
