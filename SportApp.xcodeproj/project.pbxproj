@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2219BF3C2DDD519400811F67 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2219BF3B2DDD519400811F67 /* SDWebImage */; };
+		224EBA572DDCAADD00BB284C /* LeaguesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EBA562DDCAADD00BB284C /* LeaguesPresenter.swift */; };
+		224EBA5A2DDCAB2200BB284C /* LeaguesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EBA582DDCAB2200BB284C /* LeaguesViewCell.swift */; };
+		224EBA5B2DDCAB2200BB284C /* LeaguesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224EBA592DDCAB2200BB284C /* LeaguesViewCell.xib */; };
 		229E435E2DDB69FC0042729E /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E435D2DDB69FC0042729E /* Sport.swift */; };
 		229E43622DDB6D7D0042729E /* SportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E43602DDB6D7D0042729E /* SportViewCell.swift */; };
 		229E43632DDB6D7D0042729E /* SportViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 229E43612DDB6D7D0042729E /* SportViewCell.xib */; };
@@ -46,6 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		224EBA562DDCAADD00BB284C /* LeaguesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesPresenter.swift; sourceTree = "<group>"; };
+		224EBA582DDCAB2200BB284C /* LeaguesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesViewCell.swift; sourceTree = "<group>"; };
+		224EBA592DDCAB2200BB284C /* LeaguesViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaguesViewCell.xib; sourceTree = "<group>"; };
 		229E435D2DDB69FC0042729E /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		229E43602DDB6D7D0042729E /* SportViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewCell.swift; sourceTree = "<group>"; };
 		229E43612DDB6D7D0042729E /* SportViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SportViewCell.xib; sourceTree = "<group>"; };
@@ -90,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2219BF3C2DDD519400811F67 /* SDWebImage in Frameworks */,
 				22C9103A2DDBB3610050BF5E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,6 +190,8 @@
 			children = (
 				22C910222DDB99E70050BF5E /* LeaguesViewController.swift */,
 				22C910232DDB99E70050BF5E /* LeaguesViewController.xib */,
+				224EBA582DDCAB2200BB284C /* LeaguesViewCell.swift */,
+				224EBA592DDCAB2200BB284C /* LeaguesViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -189,6 +199,7 @@
 		22C9101D2DDB97DF0050BF5E /* presenter */ = {
 			isa = PBXGroup;
 			children = (
+				224EBA562DDCAADD00BB284C /* LeaguesPresenter.swift */,
 			);
 			path = presenter;
 			sourceTree = "<group>";
@@ -318,6 +329,7 @@
 			name = SportApp;
 			packageProductDependencies = (
 				22C910392DDBB3610050BF5E /* Alamofire */,
+				2219BF3B2DDD519400811F67 /* SDWebImage */,
 			);
 			productName = SportApp;
 			productReference = EFE7256C2DD68476005D99C5 /* SportApp.app */;
@@ -349,6 +361,7 @@
 			mainGroup = EFE725632DD68476005D99C5;
 			packageReferences = (
 				22C910382DDBB3610050BF5E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2219BF3A2DDD519400811F67 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = EFE7256D2DD68476005D99C5 /* Products */;
 			projectDirPath = "";
@@ -374,6 +387,7 @@
 				229E43632DDB6D7D0042729E /* SportViewCell.xib in Resources */,
 				229E43672DDB86350042729E /* HomeViewController.xib in Resources */,
 				22C910252DDB99E70050BF5E /* LeaguesViewController.xib in Resources */,
+				224EBA5B2DDCAB2200BB284C /* LeaguesViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +405,7 @@
 				22C9102B2DDBABBB0050BF5E /* RemoteService.swift in Sources */,
 				EF9F29852DD7A3E4000F031A /* LeagueDetailsCollectionViewController.swift in Sources */,
 				22C910212DDB982A0050BF5E /* LeagueResponse.swift in Sources */,
+				224EBA572DDCAADD00BB284C /* LeaguesPresenter.swift in Sources */,
 				229E43662DDB86350042729E /* HomeViewController.swift in Sources */,
 				EFBAE5442DDBF3DD00028A44 /* LeaguesDetailsServices.swift in Sources */,
 				EFBAE5402DDBF26D00028A44 /* UpcamingEvents.swift in Sources */,
@@ -402,6 +417,7 @@
 				22C910182DDB95F70050BF5E /* FavoritesViewController.swift in Sources */,
 				22C9102D2DDBAC2E0050BF5E /* LeagueService.swift in Sources */,
 				EFE725702DD68476005D99C5 /* AppDelegate.swift in Sources */,
+				224EBA5A2DDCAB2200BB284C /* LeaguesViewCell.swift in Sources */,
 				EFE7257A2DD68476005D99C5 /* SportApp.xcdatamodeld in Sources */,
 				22C910282DDBA9CF0050BF5E /* Constants.swift in Sources */,
 				EFBAE5422DDBF28600028A44 /* LatestEvent.swift in Sources */,
@@ -618,6 +634,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2219BF3A2DDD519400811F67 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.14.0;
+			};
+		};
 		22C910382DDBB3610050BF5E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -629,6 +653,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2219BF3B2DDD519400811F67 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2219BF3A2DDD519400811F67 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		22C910392DDBB3610050BF5E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22C910382DDBB3610050BF5E /* XCRemoteSwiftPackageReference "Alamofire" */;
