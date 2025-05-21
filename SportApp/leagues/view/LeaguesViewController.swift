@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
@@ -68,6 +69,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         return 80.0
     }
     
+    // MARK: Here we configure our cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as? LeaguesViewCell else {
             print("not detected")
@@ -78,9 +80,24 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         cell.leagueName.text = league.league_name
         cell.leagueCountry.text = league.country_name
+        guard let logo = league.league_logo else {
+            return UITableViewCell()
+        }
+        cell.leagueImage.sd_setImage(with: URL(string: logo))
         
         
         return cell
+    }
+    
+    // MARK: Here we detrmine the action when cell is selected
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let league = leagues[indexPath.row]
+        
+        let leagueDetailsVC = LeagueDetailsCollectionViewController(nibName: "LeagueDetailsCollectionViewController", bundle: nil)
+        
+//        leagueDetailsVC.leagueId = league.league_key
+        
+        self.navigationController?.pushViewController(leagueDetailsVC, animated: true)
     }
     
 

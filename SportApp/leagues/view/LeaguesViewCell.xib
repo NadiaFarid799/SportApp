@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="391" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football 2" translatesAutoresizingMaskIntoConstraints="NO" id="eEx-68-cq9">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="eEx-68-cq9">
                         <rect key="frame" x="8" y="8" width="74" height="74"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="eEx-68-cq9" secondAttribute="height" multiplier="1:1" id="Aav-b6-FtM"/>
@@ -59,10 +59,10 @@
                     <constraint firstItem="eEx-68-cq9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="XwZ-2o-tZN"/>
                     <constraint firstItem="mcg-l6-kbu" firstAttribute="leading" secondItem="iZf-mp-YIY" secondAttribute="trailing" constant="8" symbolic="YES" id="YZ9-BC-MxF"/>
                     <constraint firstItem="eEx-68-cq9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="nAr-px-PXc"/>
-                    <constraint firstAttribute="bottom" secondItem="eEx-68-cq9" secondAttribute="bottom" constant="8" id="rWh-WG-UpR"/>
                     <constraint firstItem="6uo-LM-3VU" firstAttribute="leading" secondItem="eEx-68-cq9" secondAttribute="trailing" constant="8" symbolic="YES" id="uYZ-GA-vrj"/>
                     <constraint firstItem="iZf-mp-YIY" firstAttribute="leading" secondItem="eEx-68-cq9" secondAttribute="trailing" constant="8" symbolic="YES" id="w7C-zb-5LI"/>
                     <constraint firstItem="mcg-l6-kbu" firstAttribute="leading" secondItem="6uo-LM-3VU" secondAttribute="trailing" constant="8" id="xQB-Fo-vdh"/>
+                    <constraint firstAttribute="bottom" secondItem="eEx-68-cq9" secondAttribute="bottom" constant="8" id="y87-2s-UTL"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -76,7 +76,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="football 2" width="2000" height="2000"/>
         <image name="outlineFavorite" width="32" height="32"/>
+        <image name="trophy" width="64" height="64"/>
     </resources>
 </document>

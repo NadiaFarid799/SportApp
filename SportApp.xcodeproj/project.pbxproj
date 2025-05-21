@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2219BF3C2DDD519400811F67 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2219BF3B2DDD519400811F67 /* SDWebImage */; };
 		224EBA572DDCAADD00BB284C /* LeaguesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EBA562DDCAADD00BB284C /* LeaguesPresenter.swift */; };
 		224EBA5A2DDCAB2200BB284C /* LeaguesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EBA582DDCAB2200BB284C /* LeaguesViewCell.swift */; };
 		224EBA5B2DDCAB2200BB284C /* LeaguesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224EBA592DDCAB2200BB284C /* LeaguesViewCell.xib */; };
@@ -90,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2219BF3C2DDD519400811F67 /* SDWebImage in Frameworks */,
 				22C9103A2DDBB3610050BF5E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +320,7 @@
 			name = SportApp;
 			packageProductDependencies = (
 				22C910392DDBB3610050BF5E /* Alamofire */,
+				2219BF3B2DDD519400811F67 /* SDWebImage */,
 			);
 			productName = SportApp;
 			productReference = EFE7256C2DD68476005D99C5 /* SportApp.app */;
@@ -349,6 +352,7 @@
 			mainGroup = EFE725632DD68476005D99C5;
 			packageReferences = (
 				22C910382DDBB3610050BF5E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2219BF3A2DDD519400811F67 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = EFE7256D2DD68476005D99C5 /* Products */;
 			projectDirPath = "";
@@ -618,6 +622,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2219BF3A2DDD519400811F67 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.14.0;
+			};
+		};
 		22C910382DDBB3610050BF5E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -629,6 +641,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2219BF3B2DDD519400811F67 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2219BF3A2DDD519400811F67 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		22C910392DDBB3610050BF5E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22C910382DDBB3610050BF5E /* XCRemoteSwiftPackageReference "Alamofire" */;
