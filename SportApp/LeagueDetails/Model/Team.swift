@@ -13,7 +13,7 @@ import Foundation
 //}
 
 struct TeamResponse: Codable {
-    let result: [Team]
+    let result: [Team]?
 }
 
 struct Team: Codable {

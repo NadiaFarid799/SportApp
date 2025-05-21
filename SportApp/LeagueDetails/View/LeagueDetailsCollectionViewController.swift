@@ -13,12 +13,13 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
   
     var sport : String?
     var type : String?
+    //var  leagueId : String?
     
     var remoteService: RemoteService?
 
     
     var presenter: LeaguePresenterProtocol!
-        var leagueId: String?
+    var leagueId: String?
 
         var upcomingEvents: [Event] = []
         var latestEvents: [Event] = []
@@ -73,12 +74,17 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         super.viewDidLoad()
         self.title = "Leagues"
       
+//        guard let leagueId = leagueId else {
+//            leagueId = "207"
+//            return
+//        }
+        print("league id",leagueId)
 
 
         presenter = LeaguePresenter(view: self)
-        presenter.getUpcomingEvents(leagueId: "207")
-        presenter.getLatestEvents(leagueId: "207")
-        presenter.getTeams(leagueId: "207")
+        presenter.getUpcomingEvents(leagueId:leagueId ?? "4",sportName: "football")
+        presenter.getLatestEvents(leagueId: leagueId ?? "4",sportName: "football")
+        presenter.getTeams(leagueId:leagueId ??  "4",sportName: "football")
         
         
 //        presenter = LeagueDetailsPresenter(view: self)
@@ -237,7 +243,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
-        section.boundarySupplementaryItems = [createSectionHeader()] // If you want a header
+        section.boundarySupplementaryItems = [createSectionHeader()]
         return section
     }
     
@@ -337,20 +343,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
 
                  return teams.count
              }
-//        switch section {
-//        case 0:
-//            return 4 // Number of upcoming events
-//        case 1:
-//            return 6 // Number of late middle events
-//        case 2:
-//            return 10 // Number of teams
-//        default:
-//            return 0
-//        }
+
     }
     
     
-    // #warning Incomplete implementation, return the number of items
     
     
     
@@ -366,12 +362,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
                   let event = upcomingEvents[indexPath.item]
                  cell.configureUp(with: event)
 
-//                  cell.eventLabel.text = event.strEvent
-//                  cell.dateLabel.text = event.dateEvent
-//                  cell.timeLabel.text = event.strTime
-//                  // Load images asynchronously
-//                  loadImage(from: event.homeTeamImageURL, into: cell.homeImageView)
-//                  loadImage(from: event.awayTeamImageURL, into: cell.awayImageView)
+
                   return cell
 
               case .latestEvents:
@@ -385,10 +376,16 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamImageCell", for: indexPath) as! ImageCollectionViewCell
                   let team = teams[indexPath.item]
                   cell.configure(with:team)
+                  cell.onImageTapped = {[weak self] in self?.navigateToTeamDetails(team:team)}
 
                   return cell
               }
           }
+    func navigateToTeamDetails(team :Team){
+        let detailCV = TeamsDetailViewController(nibName: "TeamsDetailViewController", bundle: nil)
+        detailCV.team = team
+        self.navigationController?.pushViewController(detailCV, animated: true)
+    }
 
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

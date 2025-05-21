@@ -17,7 +17,7 @@ protocol LeagueDetailsViewProtocol: AnyObject {
 }
 
 protocol LeaguePresenterProtocol {
-    func getUpcomingEvents(leagueId: String)
-    func getLatestEvents(leagueId: String)
-    func getTeams(leagueId: String)
+    func getUpcomingEvents(leagueId: String,sportName:String)
+    func getLatestEvents(leagueId: String,sportName:String)
+    func getTeams(leagueId: String,sportName:String)
 }

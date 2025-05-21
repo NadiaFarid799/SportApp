@@ -101,8 +101,8 @@ class LeaguePresenter: LeaguePresenterProtocol {
         self.leagueService = service
     }
     
-    func getUpcomingEvents(leagueId: String) {
-        leagueService.fetchUpcomingEvents(leagueId: leagueId) { [weak self] result in
+    func getUpcomingEvents(leagueId: String,sportName:String) {
+        leagueService.fetchUpcomingEvents(leagueId: leagueId,sportName: sportName) { [weak self] result in
             switch result {
             case .success(let events):
                 self?.view?.showUpcomingEvents(events)
@@ -114,8 +114,8 @@ class LeaguePresenter: LeaguePresenterProtocol {
         }
     }
     
-    func getLatestEvents(leagueId: String) {
-        leagueService.fetchLatestEvents(leagueId: leagueId) { [weak self] result in
+    func getLatestEvents(leagueId: String,sportName:String) {
+        leagueService.fetchLatestEvents(leagueId: leagueId,sportName: sportName) { [weak self] result in
             switch result {
             case .success(let events):
                 self?.view?.showLatestEvents(events)
@@ -126,8 +126,8 @@ class LeaguePresenter: LeaguePresenterProtocol {
         }
     }
     
-    func getTeams(leagueId: String) {
-        leagueService.fetchTeams(leagueId: leagueId) { [weak self] result in
+    func getTeams(leagueId: String,sportName:String) {
+        leagueService.fetchTeams(leagueId: leagueId,sportName: sportName) { [weak self] result in
             switch result {
             case .success(let teams):
                 self?.view?.showTeams(teams)

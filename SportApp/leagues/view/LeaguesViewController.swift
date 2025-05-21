@@ -95,7 +95,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         let leagueDetailsVC = LeagueDetailsCollectionViewController(nibName: "LeagueDetailsCollectionViewController", bundle: nil)
         
-//        leagueDetailsVC.leagueId = league.league_key
+        leagueDetailsVC.leagueId = String(league.league_key)
         
         self.navigationController?.pushViewController(leagueDetailsVC, animated: true)
     }

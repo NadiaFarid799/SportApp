@@ -11,10 +11,15 @@ import SDWebImage
 class ImageCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var teamImageView: UIImageView!
+    var onImageTapped : (() -> Void)?
     override func awakeFromNib() {
         super.awakeFromNib()
         teamImageView.clipsToBounds = true
         teamImageView.contentMode = .scaleAspectFit
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+               teamImageView.isUserInteractionEnabled = true
+               teamImageView.addGestureRecognizer(tapGesture)
         // Initialization code
     }
     
@@ -29,6 +34,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
                 teamImageView.image = UIImage(named: "placeholder")
             }
         }
+    @objc func imageTapped () {
+        onImageTapped?()
+    }
     
 
 //    func configure(with team: Team) {
