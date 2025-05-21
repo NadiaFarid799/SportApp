@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 class UpEventCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var time_label: UILabel!
@@ -28,21 +28,15 @@ class UpEventCollectionViewCell: UICollectionViewCell {
     }
 
     
-//    func configure(with event: Event) {
-//        event_name_label.text = event.event_stadium
-//        date_label.text = event.event_date
-//        time_label.text = event.event_time
-//        team1_name.text = event.event_home_team
-//        team2_name.text = event.event_away_team
-////        score1_label.text = event.intHomeScore
-////        awayScoreLabel.text = event.intAwayScore
-//    }
+
     func configureUp(with event: Event) {
         event_name_label.text = event.event_stadium ?? "No Stadium"
         date_label.text = event.event_date ?? "No Date"
         time_label.text = event.event_time ?? "No Time"
         team1_name.text = event.event_home_team ?? "Team 1"
         team2_name.text = event.event_away_team  ?? "Team 2"
+        score1_label.text = event.event_final_result
+
 
         // Hide score labels if scores are not available
 //        score1_label.isHidden = true
@@ -51,10 +45,27 @@ class UpEventCollectionViewCell: UICollectionViewCell {
 
         // Optionally show VS
         vs_label.text = "VS"
+        
+        if let team1URLString = event.home_team_logo, let team1URL = URL(string: team1URLString) {
+                team1_image_view.sd_setImage(with: team1URL, placeholderImage: UIImage(named: "placeholder"))
+            } else {
+                team2_image_view.image = UIImage(named: "placeholder")
+            }
+
+            if let team2URLString = event.away_team_logo, let team2URL = URL(string: team2URLString) {
+                team2_image_view.sd_setImage(with: team2URL, placeholderImage: UIImage(named: "placeholder"))
+            } else {
+                team2_image_view.image = UIImage(named: "placeholder")
+            }
 
         // TODO: Set team images if available (use Kingfisher or URLSession)
-        team1_image_view.image = UIImage(named: "placeholder") // fallback
-        team2_image_view.image = UIImage(named: "placeholder")
+       
+    
+
+
+//        // TODO: Set team images if available (use Kingfisher or URLSession)
+//        team1_image_view.image = UIImage(named: "placeholder") // fallback
+//        team2_image_view.image = UIImage(named: "placeholder")
     }
     
     func configureLate(with event: Event) {
@@ -65,6 +76,7 @@ class UpEventCollectionViewCell: UICollectionViewCell {
         team2_name.text = event.event_away_team  ?? "Team 2"
         score1_label.text = event.event_final_result
         
+        
 
         // Hide score labels if scores are not available
 //        score1_label.isHidden = true
@@ -73,10 +85,22 @@ class UpEventCollectionViewCell: UICollectionViewCell {
 
         // Optionally show VS
         vs_label.text = "VS"
+        
+        
+        if let team1URLString = event.home_team_logo, let team1URL = URL(string: team1URLString) {
+                team1_image_view.sd_setImage(with: team1URL, placeholderImage: UIImage(named: "placeholder"))
+            } else {
+                team2_image_view.image = UIImage(named: "placeholder")
+            }
+
+            if let team2URLString = event.away_team_logo, let team2URL = URL(string: team2URLString) {
+                team2_image_view.sd_setImage(with: team2URL, placeholderImage: UIImage(named: "placeholder"))
+            } else {
+                team2_image_view.image = UIImage(named: "placeholder")
+            }
 
         // TODO: Set team images if available (use Kingfisher or URLSession)
-        team1_image_view.image = UIImage(named: "placeholder") // fallback
-        team2_image_view.image = UIImage(named: "placeholder")
+       
     }
 
 
