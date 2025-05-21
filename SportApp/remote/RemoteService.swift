@@ -13,4 +13,9 @@ protocol RemoteService {
         url: URL,completion: @escaping(Result<T,Error>) -> Void)
     
     func prepareURL(sportname: String) -> URL
+
+
+    
+    
+    
 }

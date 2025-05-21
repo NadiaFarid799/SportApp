@@ -13,15 +13,11 @@ protocol LeagueDetailsViewProtocol: AnyObject {
     func showUpcomingEvents(_ events: [Event])
     func showLatestEvents(_ events: [Event])
     func showTeams(_ teams: [Team])
-    func showError(_ message: String)
+    func showError(_ error: String)
 }
 
-//protocol LeagueDetailsViewProtocol: AnyObject {
-//    func showUpcomingEvents(_ events: [Event])
-//    func showLatestEvents(_ events: [Event])
-//    func showTeams(_ teams: [Team])
-//    func showError(_ message: String)
-//}
-//protocol LeagueDetailsPresenterProtocol {
-//    func fetchDetails(forLeagueId id: String)
-//}
+protocol LeaguePresenterProtocol {
+    func getUpcomingEvents(leagueId: String)
+    func getLatestEvents(leagueId: String)
+    func getTeams(leagueId: String)
+}

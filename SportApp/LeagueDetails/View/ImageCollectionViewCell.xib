@@ -38,6 +38,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="football" width="2000" height="2000"/>
+        <image name="football" width="4001" height="4001"/>
     </resources>
 </document>

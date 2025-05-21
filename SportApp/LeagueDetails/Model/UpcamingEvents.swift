@@ -1,0 +1,25 @@
+//
+//  UpcamingEvents.swift
+//  SportApp
+//
+//  Created by NadiaFarid on 19/05/2025.
+//
+
+import Foundation
+struct UpcomingEventResponse: Codable {
+    let success: Int
+    let result: [UpcomingEvents]
+}
+
+// MARK: - Event Model
+struct UpcomingEvents: Codable {
+    let league_name :String?
+    let event_key: String?
+    let event_date: String?
+    let event_time: String?
+    let event_home_team: String?
+    let event_away_team: String?
+    let event_final_result: String?
+    let home_team_logo: String?
+    let away_team_logo: String?
+}

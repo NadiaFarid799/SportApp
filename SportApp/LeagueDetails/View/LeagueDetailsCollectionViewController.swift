@@ -10,40 +10,45 @@ import UIKit
 //private let reuseIdentifier = "eventCell"
 
 class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDetailsViewProtocol{
+  
+    var sport : String?
+    var type : String?
     
+    var remoteService: RemoteService?
+
     
-    var presenter: LeagueDetailsPresenter!
-        var leagueId: String? = "207"
+    var presenter: LeaguePresenterProtocol!
+        var leagueId: String?
 
         var upcomingEvents: [Event] = []
         var latestEvents: [Event] = []
         var teams: [Team] = []
     func showUpcomingEvents(_ events: [Event]) {
-//        DispatchQueue.main.async {
-//               self.upcomingEvents = events
-//               self.collectionView.reloadSections(IndexSet(integer: LeagueSection.upcomingEvents.rawValue))
-//           }
+        DispatchQueue.main.async {
+               self.upcomingEvents = events
+               self.collectionView.reloadSections(IndexSet(integer: LeagueSection.upcomingEvents.rawValue))
+           }
     }
     
     func showLatestEvents(_ events: [Event]) {
-//        DispatchQueue.main.async {
-//                self.latestEvents = events
-//                self.collectionView.reloadSections(IndexSet(integer: LeagueSection.latestEvents.rawValue))
-//            }
+        DispatchQueue.main.async {
+                self.latestEvents = events
+                self.collectionView.reloadSections(IndexSet(integer: LeagueSection.latestEvents.rawValue))
+            }
     }
     
     func showTeams(_ teams: [Team]) {
-//        DispatchQueue.main.async {
-//               self.teams = teams
-//               self.collectionView.reloadSections(IndexSet(integer: LeagueSection.teams.rawValue))
-//           }
+        DispatchQueue.main.async {
+               self.teams = teams
+               self.collectionView.reloadSections(IndexSet(integer: LeagueSection.teams.rawValue))
+           }
     }
     
     func showError(_ message: String) {
-//        DispatchQueue.main.async {
-//                   print("Error:", message)
-//                   // show alert if needed
-//               }
+        DispatchQueue.main.async {
+                   print("Error:", message)
+                   // show alert if needed
+               }
     }
     
     
@@ -68,9 +73,19 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         super.viewDidLoad()
         self.title = "Leagues"
       
+
+
+        presenter = LeaguePresenter(view: self)
+        presenter.getUpcomingEvents(leagueId: "207")
+        presenter.getLatestEvents(leagueId: "207")
+        presenter.getTeams(leagueId: "207")
+        
+        
 //        presenter = LeagueDetailsPresenter(view: self)
+//
+//        presenter.getLeagueDetails(leagueId: "207")
 //        if leagueId == nil {
-//            leagueId = "207"
+//            leagueId = "49"
 //        }
 //       // presenter.attachView(view:self)
 //              if let id = leagueId {
@@ -119,10 +134,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         //        collectionView.setCollectionViewLayout(layout, animated: true)
         
         
-        let headerNib = UINib(nibName: "SectionHeaderCollectionReusableView", bundle: nil)
+        let headerNib = UINib(nibName: "HeaderSectionCollectionReusableView", bundle: nil)
         collectionView.register(headerNib,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: "header")
+                                withReuseIdentifier: "headercell")
 
 //        collectionView.register(SectionHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
         
@@ -310,15 +325,15 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         guard let sectionType = LeagueSection(rawValue: section) else { return 0 }
              switch sectionType {
              case .upcomingEvents:
-                 return 5
-               //  return upcomingEvents.count
+               //  return 5
+                 return upcomingEvents.count
                 // return upcomingEvents.count
              case .latestEvents:
-                 return 4
+                 //return 4
 
                  return latestEvents.count
              case .teams:
-                 return 4
+                // return 4
 
                  return teams.count
              }
@@ -348,7 +363,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
               switch sectionType {
               case .upcomingEvents:
                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
-                //  let event = upcomingEvents[indexPath.item]
+                  let event = upcomingEvents[indexPath.item]
+                 cell.configureUp(with: event)
+
 //                  cell.eventLabel.text = event.strEvent
 //                  cell.dateLabel.text = event.dateEvent
 //                  cell.timeLabel.text = event.strTime
@@ -359,8 +376,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
 
               case .latestEvents:
                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
-               //   let event = latestEvents[indexPath.item]
-                //  cell.configure(with: event)
+                  let event = latestEvents[indexPath.item]
+                cell.configureLate(with: event)
 
 //                  cell.homeTeamLabel.text = event.strEvent.components(separatedBy: " vs ").first
 //                  cell.awayTeamLabel.text = event.strEvent.components(separatedBy: " vs ").last
@@ -391,16 +408,17 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionView.elementKindSectionHeader {
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeaderCollectionReusableView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headercell", for: indexPath) as!
+            HeaderSectionCollectionReusableView
             switch indexPath.section {
             case 0:
-                headerView.title_Label.text = "Upcoming Events" // Assuming you have a titleLabel in your header view
+                headerView.title_label.text = "Upcoming Events" // Assuming you have a titleLabel in your header view
             case 1:
-                headerView.title_Label.text = "Late Middle Events"
+                headerView.title_label.text = "Late Middle Events"
             case 2:
-                headerView.title_Label.text = "Teams"
+                headerView.title_label.text = "Teams"
             default:
-                headerView.title_Label.text = ""
+                headerView.title_label.text = ""
             }
             
             return headerView
