@@ -14,7 +14,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     var sport : String?
     var type : String?
     
-    //var  leagueId : String?
     
     var remoteService: RemoteService?
 
@@ -89,19 +88,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         presenter.getLatestEvents(leagueId: leagueId ?? "4",sportName: "football")
         presenter.getTeams(leagueId:leagueId ??  "4",sportName: "football")
         
-        
-//        presenter = LeagueDetailsPresenter(view: self)
-//
-//        presenter.getLeagueDetails(leagueId: "207")
-//        if leagueId == nil {
-//            leagueId = "49"
-//        }
-//       // presenter.attachView(view:self)
-//              if let id = leagueId {
-//                  presenter.getLeagueDetails(leagueId : id)
-//              }
-//        showUpcomingEvents(upcomingEvents)
-//        showLatestEvents(latestEvents)
+ 
         
         
         let appearance = UINavigationBarAppearance()

@@ -23,6 +23,8 @@ class UpEventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var team1_name: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layer.cornerRadius = 12
+        self.layer.masksToBounds = true
        // configure(with: <#T##Event#>)
         // Initialization code
     }
