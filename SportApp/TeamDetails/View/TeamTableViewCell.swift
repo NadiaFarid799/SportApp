@@ -37,23 +37,12 @@ class TeamTableViewCell: UITableViewCell {
                 coach_image.sd_setImage(with: caachURL)
         }
         }
-        
-        //        if let imgTeamURL = URL(string: team.team_logo ?? "")
-        //        {
-        //            team_image.sd_setImage(with : imgTeamURL ,placeholderImage : UIImage(named: "placeholder" ))}
-        //
-        //    }
-        //        if let imgURL = URL(string: player.player_image ?? "")
-        //        {
-        //            coach_image.sd_setImage(with : imgURL ,placeholderImage : UIImage(named: "placeholder" ))}
-        //
-        //    }
+       
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
     }
     
 }
