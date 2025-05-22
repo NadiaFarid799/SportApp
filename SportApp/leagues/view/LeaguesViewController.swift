@@ -87,5 +87,11 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.leaguesTableView.reloadData()
     }
     
+    
+    // MARK: Here we update the tableView When data arraives.
+    func updateLeaguess(leagues: [League]) {
+        print("hello")
+    }
+    
 
 }
