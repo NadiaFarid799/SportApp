@@ -11,10 +11,10 @@ class SportViewCell: UICollectionViewCell {
     
         
     @IBOutlet weak var sportImage: UIImageView!
-    
     @IBOutlet weak var sportName: UILabel!
-    
     @IBOutlet weak var sportDesc: UILabel!
+    
+    var navigateToLeaguesScreen: (() -> ()) = {}
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,5 +32,12 @@ class SportViewCell: UICollectionViewCell {
         layer.masksToBounds = false  //Allow shadow to show outside bounds
         
     }
+    
+    @IBAction func onExploreClicked(_ sender: Any) {
+        
+        navigateToLeaguesScreen()
+        
+    }
+    
 
 }

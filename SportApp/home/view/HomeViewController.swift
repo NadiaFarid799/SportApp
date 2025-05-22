@@ -49,6 +49,9 @@ class HomeViewController:UIViewController,UICollectionViewDataSource,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"sportCell", for: indexPath) as! SportViewCell
         
+        cell.navigateToLeaguesScreen = { self.navigateToLeaguesScreen(sportName:self.sports[indexPath.row].name)
+        }
+        
         cell.sportName.text = sports[indexPath.row].name
         cell.sportDesc.text = sports[indexPath.row].description
         cell.sportImage.image = UIImage(named: sports[indexPath.row].image)
@@ -57,9 +60,14 @@ class HomeViewController:UIViewController,UICollectionViewDataSource,UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sport = sports[indexPath.row].name
+        self.navigateToLeaguesScreen(sportName: sport)
+    }
+    
+    func navigateToLeaguesScreen(sportName: String){
         let leaguesVC = LeaguesViewController(nibName: "LeaguesViewController", bundle: nil)
         
-        leaguesVC.sportName = sports[indexPath.row].name
+        leaguesVC.sportName = sportName
         
         self.navigationController?.pushViewController(leaguesVC, animated: true)
     }

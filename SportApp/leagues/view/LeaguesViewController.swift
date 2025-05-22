@@ -8,11 +8,11 @@
 import UIKit
 import SDWebImage
 
-class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
+class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,LeagueViewContract{
     
     var sportName: String?
-    var remoteService: RemoteService?
-    var leagues : [League] = []
+    var leagues: [League] = []
+    var leaguesViewPresenter: LeaguesPresenter?
     
     @IBOutlet weak var leaguesTableView: UITableView!
     
@@ -23,46 +23,25 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         leaguesTableView.dataSource = self
         leaguesTableView.delegate = self
         
+        //MARK: Initialize Presenter
+        leaguesViewPresenter = LeaguesPresenter(leagueViewContract: self, remoteService: LeagueService())
+        
         //MARK: load the League cell NibFile
         let nib = UINib(nibName: "LeaguesViewCell", bundle: nil)
         self.leaguesTableView.register(nib, forCellReuseIdentifier: "leagueCell")
         
-        // MARK: checking if the sport name sent from previous page is null or not
-        guard let sportName = sportName else {
-            sportName = "football"
-            return
-        }
-        
-        self.title = "\(sportName) Leagues"
-        remoteService = LeagueService()
+        self.title = "\(self.sportName!) Leagues"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        // MARK: checking if the sport name sent from previous page is null or not
-        guard let sportName = sportName else {
-            sportName = "football"
-            return
-        }
-        
-        // MARK: Here we prepare the url based on the sport name
-        let leaguesUrl = remoteService!.prepareURL(sportname: sportName)
-        
         // MARK: Here we hit the Api and receive the data from server
-        remoteService!.fetchData(url: leaguesUrl) { (result: Result<LeagueResponse,Error>) in
-            switch result {
-            case .success(let response):
-                self.leagues = response.result
-                self.leaguesTableView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
-        }
+        leaguesViewPresenter?.getLeagues(sportName: self.sportName!)
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        leagues.count
+        return self.leagues.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,7 +55,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
             return LeaguesViewCell()
         }
         
-        let league = leagues[indexPath.row]
+        let league = self.leagues[indexPath.row]
         
         cell.leagueName.text = league.league_name
         cell.leagueCountry.text = league.country_name
@@ -95,9 +74,17 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         let leagueDetailsVC = LeagueDetailsCollectionViewController(nibName: "LeagueDetailsCollectionViewController", bundle: nil)
         
-//        leagueDetailsVC.leagueId = league.league_key
+        leagueDetailsVC.leagueId = String(league.league_key)
+        leagueDetailsVC.sport = self.sportName!
+//        leagueDetailsVC.league
         
         self.navigationController?.pushViewController(leagueDetailsVC, animated: true)
+    }
+    
+    // MARK: Here we update the tableView When data arraives.
+    func updateLeagues(leagues: [League]) {
+        self.leagues = leagues
+        self.leaguesTableView.reloadData()
     }
     
 
