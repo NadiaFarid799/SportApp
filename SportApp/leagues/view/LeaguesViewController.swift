@@ -76,7 +76,7 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         leagueDetailsVC.leagueId = String(league.league_key)
         leagueDetailsVC.sport = self.sportName!
-//        leagueDetailsVC.league
+//        leagueDetailsVC.leagueName = league.league_name
         
         self.navigationController?.pushViewController(leagueDetailsVC, animated: true)
     }
