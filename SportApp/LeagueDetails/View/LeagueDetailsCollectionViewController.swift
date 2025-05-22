@@ -14,7 +14,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     var sport : String?
     var type : String?
     
-    
+    var leagueName : String?
     var remoteService: RemoteService?
 
     
@@ -64,8 +64,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
    let favoriteImage = UIImage(named: "outlineFavorite")
         // MARK: - Favorite Button
     var favoriteButton: UIBarButtonItem {
-            let image = UIImage(systemName: isFavorite ? "heart" : "heart.fill")
-            let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(toggleFavorite))
+            let image = UIImage(named: isFavorite ? "outlineFavorite" : "favorite")
+        let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(toggleFavorite))
+       // button.tintColor = .tintColor
       //  button.image = UIImage(syste)
           //  button.tintColor = .green
             return button
@@ -73,21 +74,20 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "\(sport) Leagues"
+     
+        
+        
+        
+        
+        
+       
        // self.title = "\(sportName) Leagues"
 
 //        guard let leagueId = leagueId else {
 //            leagueId = "207"
 //            return
 //        }
-        print("league id",leagueId)
-
-
-        presenter = LeaguePresenter(view: self)
-        presenter.getUpcomingEvents(leagueId:leagueId ?? "4",sportName: "football")
-        presenter.getLatestEvents(leagueId: leagueId ?? "4",sportName: "football")
-        presenter.getTeams(leagueId:leagueId ??  "4",sportName: "football")
-        
+      
  
         
         
@@ -98,8 +98,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
 
             navigationController?.navigationBar.standardAppearance = appearance
             navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.compactAppearance = appearance
-            navigationController?.navigationBar.tintColor = UIColor.purple
+//            navigationController?.navigationBar.compactAppearance = appearance
+//            navigationController?.navigationBar.tintColor = UIColor.
         navigationController?.navigationBar.titleTextAttributes = [
                .foregroundColor: UIColor.purple, // or any color you prefer
                .font: UIFont.boldSystemFont(ofSize: 20) // optional: customize font
@@ -185,7 +185,24 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         
     }
     
-   
+    override func viewWillAppear(_ animated: Bool) {
+        
+        guard let leagueName = self.leagueName ,
+              let leagueId = self.leagueId,
+              let sport = self.sport else {
+            return
+        }
+        self.title = " \(leagueName) Leagues"
+
+        print("league id",leagueId)
+
+
+        presenter = LeaguePresenter(view: self)
+        presenter.getUpcomingEvents(leagueId:leagueId ,sportName: "\(sport)")
+        presenter.getLatestEvents(leagueId: leagueId ,sportName: "\(sport)")
+        presenter.getTeams(leagueId:leagueId ,sportName: "\(sport)")
+        
+    }
     
     
     
