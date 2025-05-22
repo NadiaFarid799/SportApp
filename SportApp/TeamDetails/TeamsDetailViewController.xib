@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeamsDetailViewController" customModule="SportApp" customModuleProvider="target">
             <connections>
+                <outlet property="player_image" destination="K0k-FF-Zmy" id="TaI-qw-zTP"/>
                 <outlet property="team_image" destination="ArF-k4-Jx5" id="maF-KM-T1b"/>
                 <outlet property="team_name" destination="IVs-aV-Ord" id="9qa-zv-yiw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="L5h-re-bT4"/>
@@ -33,6 +34,10 @@
                     <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K0k-FF-Zmy">
+                    <rect key="frame" x="90" y="509" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>

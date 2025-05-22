@@ -13,6 +13,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
   
     var sport : String?
     var type : String?
+    
     //var  leagueId : String?
     
     var remoteService: RemoteService?
@@ -61,19 +62,21 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
   
     
     var isFavorite: Bool = false
-
+   let favoriteImage = UIImage(named: "outlineFavorite")
         // MARK: - Favorite Button
     var favoriteButton: UIBarButtonItem {
-            let image = UIImage(systemName: isFavorite ? "heart.fill" : "heart")
+            let image = UIImage(systemName: isFavorite ? "heart" : "heart.fill")
             let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(toggleFavorite))
-            button.tintColor = .green
+      //  button.image = UIImage(syste)
+          //  button.tintColor = .green
             return button
         }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Leagues"
-      
+        self.title = "\(sport) Leagues"
+       // self.title = "\(sportName) Leagues"
+
 //        guard let leagueId = leagueId else {
 //            leagueId = "207"
 //            return
@@ -104,14 +107,14 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.white // background color
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.green] // title color
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.purple] // title color
 
             navigationController?.navigationBar.standardAppearance = appearance
             navigationController?.navigationBar.scrollEdgeAppearance = appearance
             navigationController?.navigationBar.compactAppearance = appearance
-            navigationController?.navigationBar.tintColor = UIColor.green
+            navigationController?.navigationBar.tintColor = UIColor.purple
         navigationController?.navigationBar.titleTextAttributes = [
-               .foregroundColor: UIColor.green, // or any color you prefer
+               .foregroundColor: UIColor.purple, // or any color you prefer
                .font: UIFont.boldSystemFont(ofSize: 20) // optional: customize font
            ]
         let nib = UINib(nibName: "UpEventCollectionViewCell", bundle: nil)
@@ -382,7 +385,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
               }
           }
     func navigateToTeamDetails(team :Team){
-        let detailCV = TeamsDetailViewController(nibName: "TeamsDetailViewController", bundle: nil)
+        let detailCV = TeamDetailsTableViewController(nibName: "TeamDetailsTableViewController", bundle: nil)
         detailCV.team = team
         self.navigationController?.pushViewController(detailCV, animated: true)
     }

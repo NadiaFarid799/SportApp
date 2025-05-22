@@ -20,4 +20,20 @@ struct Team: Codable {
     let team_key: Int
     let team_name: String
     let team_logo: String?
+    var players : [Players]?
+    
 }
+
+
+struct Players : Codable {
+    let player_name: String?
+    let player_type: String? // "Player" or "Coach"
+    let player_image: String?
+}
+//struct PlayerResponse : Codable {
+//    let result : [Players]
+//}
+
+
+
+

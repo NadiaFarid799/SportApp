@@ -12,11 +12,21 @@ class TeamsDetailViewController: UIViewController {
     
     @IBOutlet weak var team_name: UILabel!
     
+    @IBOutlet weak var player_image: UIImageView!
+    
+//    playerCollectionView.register(UINib(nibName: "PlayersCollectionViewCell", bundle: nil) , forCellReuseIdentifier: "playerCell")
+    
     var team : Team?
+    var players : [Players] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
         team_name.text = team?.team_name ?? "NoTeam"
+        
+        if let logo2 = team?.players?[0].player_image ,let url = URL(string:logo2){
+            player_image.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+        }
+        
         if let logo = team?.team_logo ,let url = URL(string:logo){
             team_image.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
         }
