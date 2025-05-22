@@ -14,11 +14,12 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     var sport : String?
     var type : String?
     
+    
     var remoteService: RemoteService?
 
     
     var presenter: LeaguePresenterProtocol!
-        var leagueId: String?
+    var leagueId: String?
 
         var upcomingEvents: [Event] = []
         var latestEvents: [Event] = []
@@ -60,52 +61,47 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
   
     
     var isFavorite: Bool = false
-
+   let favoriteImage = UIImage(named: "outlineFavorite")
         // MARK: - Favorite Button
     var favoriteButton: UIBarButtonItem {
-            let image = UIImage(systemName: isFavorite ? "heart.fill" : "heart")
+            let image = UIImage(systemName: isFavorite ? "heart" : "heart.fill")
             let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(toggleFavorite))
-            button.tintColor = .green
+      //  button.image = UIImage(syste)
+          //  button.tintColor = .green
             return button
         }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Leagues"
-      
+        self.title = "\(sport) Leagues"
+       // self.title = "\(sportName) Leagues"
+
+//        guard let leagueId = leagueId else {
+//            leagueId = "207"
+//            return
+//        }
+        print("league id",leagueId)
 
 
         presenter = LeaguePresenter(view: self)
-        presenter.getUpcomingEvents(leagueId: "207")
-        presenter.getLatestEvents(leagueId: "207")
-        presenter.getTeams(leagueId: "207")
+        presenter.getUpcomingEvents(leagueId:leagueId ?? "4",sportName: "football")
+        presenter.getLatestEvents(leagueId: leagueId ?? "4",sportName: "football")
+        presenter.getTeams(leagueId:leagueId ??  "4",sportName: "football")
         
-        
-//        presenter = LeagueDetailsPresenter(view: self)
-//
-//        presenter.getLeagueDetails(leagueId: "207")
-//        if leagueId == nil {
-//            leagueId = "49"
-//        }
-//       // presenter.attachView(view:self)
-//              if let id = leagueId {
-//                  presenter.getLeagueDetails(leagueId : id)
-//              }
-//        showUpcomingEvents(upcomingEvents)
-//        showLatestEvents(latestEvents)
+ 
         
         
         let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.white // background color
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.green] // title color
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.purple] // title color
 
             navigationController?.navigationBar.standardAppearance = appearance
             navigationController?.navigationBar.scrollEdgeAppearance = appearance
             navigationController?.navigationBar.compactAppearance = appearance
-            navigationController?.navigationBar.tintColor = UIColor.green
+            navigationController?.navigationBar.tintColor = UIColor.purple
         navigationController?.navigationBar.titleTextAttributes = [
-               .foregroundColor: UIColor.green, // or any color you prefer
+               .foregroundColor: UIColor.purple, // or any color you prefer
                .font: UIFont.boldSystemFont(ofSize: 20) // optional: customize font
            ]
         let nib = UINib(nibName: "UpEventCollectionViewCell", bundle: nil)
@@ -237,7 +233,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
-        section.boundarySupplementaryItems = [createSectionHeader()] // If you want a header
+        section.boundarySupplementaryItems = [createSectionHeader()]
         return section
     }
     
@@ -337,20 +333,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
 
                  return teams.count
              }
-//        switch section {
-//        case 0:
-//            return 4 // Number of upcoming events
-//        case 1:
-//            return 6 // Number of late middle events
-//        case 2:
-//            return 10 // Number of teams
-//        default:
-//            return 0
-//        }
+
     }
     
     
-    // #warning Incomplete implementation, return the number of items
     
     
     
@@ -366,12 +352,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
                   let event = upcomingEvents[indexPath.item]
                  cell.configureUp(with: event)
 
-//                  cell.eventLabel.text = event.strEvent
-//                  cell.dateLabel.text = event.dateEvent
-//                  cell.timeLabel.text = event.strTime
-//                  // Load images asynchronously
-//                  loadImage(from: event.homeTeamImageURL, into: cell.homeImageView)
-//                  loadImage(from: event.awayTeamImageURL, into: cell.awayImageView)
+
                   return cell
 
               case .latestEvents:
@@ -379,31 +360,23 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
                   let event = latestEvents[indexPath.item]
                 cell.configureLate(with: event)
 
-//                  cell.homeTeamLabel.text = event.strEvent.components(separatedBy: " vs ").first
-//                  cell.awayTeamLabel.text = event.strEvent.components(separatedBy: " vs ").last
-//                  cell.homeScoreLabel.text = "\(event.intHomeScore ?? 0)"
-//                  cell.awayScoreLabel.text = "\(event.intAwayScore ?? 0)"
-//                  cell.dateLabel.text = event.dateEvent
-//                  cell.timeLabel.text = event.strTime
-//                  // Load images asynchronously
-//                  loadImage(from: event.homeTeamImageURL, into: cell.homeImageView)
-//                  loadImage(from: event.awayTeamImageURL, into: cell.awayImageView)
                   return cell
 
               case .teams:
                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamImageCell", for: indexPath) as! ImageCollectionViewCell
-                //  let team = teams[indexPath.item]
-//                  // Load image asynchronously
-//                  loadImage(from: team.teamBadgeURL, into: cell.teamImageView)
+                  let team = teams[indexPath.item]
+                  cell.configure(with:team)
+                  cell.onImageTapped = {[weak self] in self?.navigateToTeamDetails(team:team)}
+
                   return cell
               }
           }
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
-//
-//        // Configure the cell
-//
-//        return cell
-    
+    func navigateToTeamDetails(team :Team){
+        let detailCV = TeamDetailsTableViewController(nibName: "TeamDetailsTableViewController", bundle: nil)
+        detailCV.team = team
+        self.navigationController?.pushViewController(detailCV, animated: true)
+    }
+
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         

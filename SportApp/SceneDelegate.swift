@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
 //        let rootViewController = LeagueDetailsCollectionViewController(nibName: "LeagueDetailsCollectionViewController", bundle: nil)
 ////
-      let rootViewController = setupTabBar()
+    let rootViewController = setupTabBar()
         window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         window?.makeKeyAndVisible()
     }
