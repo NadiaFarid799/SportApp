@@ -61,7 +61,10 @@ class LocalDataSource : LocalSource{
         return localLeagues
     }
     
-    func isLeagueInFavorites(leagueKey: Int) -> Bool {
+    func isLeagueInFavorites(leagueKey: String) -> Bool {
+        guard  let   leagueKey = Int(leagueKey) else{
+            return false
+        }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LocalLeague")
         fetchRequest.predicate = NSPredicate(format: "leagueKey == %d", leagueKey)
         fetchRequest.fetchLimit = 1

@@ -6,21 +6,25 @@
 //
 
 import UIKit
+import CoreData
 
 //private let reuseIdentifier = "eventCell"
 
 class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDetailsViewProtocol{
-  
+    var isFavorite: Bool = false
+
     var sport : String?
     var type : String?
-    
+     var leagueCoutry : String?
+    var countryKey : Int?
+    var leagueImage : String?
     var leagueName : String?
     var remoteService: RemoteService?
-
-    
+    var localDataSource : LocalDataSource?
+   // var leagues: [League] = []
     var presenter: LeaguePresenterProtocol!
     var leagueId: String?
-
+    
         var upcomingEvents: [Event] = []
         var latestEvents: [Event] = []
         var teams: [Team] = []
@@ -58,36 +62,21 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         case latestEvents = 1
         case teams = 2
     }
+//    let leageKey = Int(leagueId ?? 4)
+//    print(leageKey)
+  //  let favoriteImage = UIImage(named: "outlineFavorite")
+         // MARK: - Favorite Button
+    
   
-    
-    var isFavorite: Bool = false
-   let favoriteImage = UIImage(named: "outlineFavorite")
-        // MARK: - Favorite Button
-    var favoriteButton: UIBarButtonItem {
-            let image = UIImage(named: isFavorite ? "outlineFavorite" : "favorite")
-        let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(toggleFavorite))
-       // button.tintColor = .yellow
-      //  button.image = UIImage(syste)
-          //  button.tintColor = .green
-            return button
-        }
-    
+  
+      
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        
-        
         
         
         
        
-       // self.title = "\(sportName) Leagues"
-
-//        guard let leagueId = leagueId else {
-//            leagueId = "207"
-//            return
-//        }
-      
+     
  
         
         
@@ -118,19 +107,13 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         
         collectionView.register(nib3, forCellWithReuseIdentifier: "lateEventCell")
         
-        navigationItem.rightBarButtonItem = favoriteButton
 
-        //        let layout = UICollectionViewCompositionalLayout { index , enviroment in
-        //
-        //            if index == 0 {
-        //                return self.createUpcomingEventsSection()
-        //            } else {
-        //                return self.createLateMiddleEventsSection()
-        //            }
-        //
-        //        }
-        //
-        //        collectionView.setCollectionViewLayout(layout, animated: true)
+        let nib4 = UINib(nibName: "NoDataCollectionViewCell", bundle: nil)
+        
+        
+        collectionView.register(nib3, forCellWithReuseIdentifier: "noData")
+        
+
         
         
         let headerNib = UINib(nibName: "HeaderSectionCollectionReusableView", bundle: nil)
@@ -138,24 +121,12 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: "headercell")
 
-//        collectionView.register(SectionHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
         
         collectionView.collectionViewLayout = createLeagueDetailsLayout()
     }
     
-    @objc func toggleFavorite() {
-            isFavorite.toggle()
-            favoriteButton.image = UIImage(systemName: isFavorite ? "heart.fill" : "heart")
-   /// i will use it when i add favourite logic
-//            if isFavorite {
-//                print("\(leagueName) added to favorites.")
-//                UserDefaults.standard.set(true, forKey: "favorite_league_\(leagueId)")
-//            } else {
-//                print("\(leagueName) removed from favorites.")
-//                UserDefaults.standard.set(false, forKey: "favorite_league_\(leagueId)")
-//            }
-        }
-    
+
+  
     private func createCompositionalLayout() -> UICollectionViewLayout {
           let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
               guard let sectionType = LeagueSection(rawValue: sectionIndex) else { return nil }
@@ -187,8 +158,82 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         return layout
         
     }
+//
+//    @objc func toggleFavorite() {
+//            isFavorite.toggle()
+////            favoriteButton.image = UIImage(systemName: isFavorite ? "heart.fill" : "heart")
+//
+//        }
+//
+    
+    func updateFavoriteButton() {
+        guard let leagueId = leagueId else { return }
+        isFavorite = localDataSource?.isLeagueInFavorites(leagueKey: leagueId) ?? false
+        let imageName = isFavorite ? "favorite" : "outlineFavorite"
+        let image = UIImage(named: imageName)
+        let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(toggleFavorite))
+        navigationItem.rightBarButtonItem = button
+    }
+    @objc func toggleFavorite() {
+        guard let leagueId = leagueId,
+              let leagueKey = Int(leagueId),
+              let leagueName = leagueName,
+              
+              let sport = sport else { return }
+
+        if isFavorite {
+            // Remove from favorites
+            if let leagues = localDataSource?.getLeagues(),
+               let leagueToRemove = leagues.first(where: { $0.leagueKey == leagueKey }) {
+                localDataSource?.removeLeague(league: leagueToRemove)
+            }
+        } else {
+            // Add to favorites
+            let league = League(league_key: leagueKey, league_name: leagueName, country_key: countryKey, country_name: leagueCoutry, league_surface: "", league_year: "", league_logo: "", country_logo: leagueImage)
+            let imageData = Data() // Replace with actual image data if available
+            localDataSource?.saveLeague(league: league, sportName: sport, image: imageData)
+        }
+
+        isFavorite.toggle()
+        updateFavoriteButton()
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "LocalLeague", in: context)
+
+     
+     localDataSource = LocalDataSource(entity: entity!, context: context)
+        
+        updateFavoriteButton()
+        
+       
+//        var favoriteButton: UIBarButtonItem {
+//            if let leagueId = leagueId {
+//                isFavorite = localDataSource!.isLeagueInFavorites(leagueKey: leagueId)
+//
+//            }
+//            if isFavorite == true {
+//                let image = UIImage(named:"favorite")
+//
+//                let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(toggleFavorite))
+//                return button
+//            }else {
+//                let image = UIImage(named:"outlineFavorite")
+//
+//                let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(toggleFavorite))
+//                return button
+//            }
+//
+//
+//
+//            }
+//
+//        navigationItem.rightBarButtonItem = favoriteButton
+
+     
         
         guard let leagueName = self.leagueName ,
               let leagueId = self.leagueId,
@@ -205,10 +250,15 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         presenter.getLatestEvents(leagueId: leagueId ,sportName: "\(sport)")
         presenter.getTeams(leagueId:leagueId ,sportName: "\(sport)")
         
+        
+        
+  
+
+        
     }
     
     
-    
+ 
     
     
     func createUpcomingEventsSection() -> NSCollectionLayoutSection {
@@ -360,37 +410,87 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     
     
     
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//        guard let sectionType = LeagueSection(rawValue: indexPath.section) else {
+//                  fatalError("Invalid section")
+//              }
+//
+//              switch sectionType {
+//              case .upcomingEvents:
+//
+//                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
+//                  let event = upcomingEvents[indexPath.item]
+//                 cell.configureUp(with: event)
+//
+//
+//                  return cell
+//
+//              case .latestEvents:
+//                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
+//                  let event = latestEvents[indexPath.item]
+//                cell.configureLate(with: event)
+//
+//                  return cell
+//
+//              case .teams:
+//                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamImageCell", for: indexPath) as! ImageCollectionViewCell
+//                  let team = teams[indexPath.item]
+//                  cell.configure(with:team)
+//                  cell.onImageTapped = {[weak self] in self?.navigateToTeamDetails(team:team)}
+//
+//                  return cell
+//              }
+//          }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         guard let sectionType = LeagueSection(rawValue: indexPath.section) else {
-                  fatalError("Invalid section")
-              }
+            fatalError("Invalid section")
+        }
 
-              switch sectionType {
-              case .upcomingEvents:
-                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
-                  let event = upcomingEvents[indexPath.item]
-                 cell.configureUp(with: event)
+        switch sectionType {
+        case .upcomingEvents:
+            if upcomingEvents.isEmpty {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noData", for: indexPath) as! NoDataCollectionViewCell
+                cell.configureUp()
 
+//                cell.configure(with: "No Upcoming Events")
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
+                let event = upcomingEvents[indexPath.item]
+                cell.configureUp(with: event)
+                return cell
+            }
 
-                  return cell
-
-              case .latestEvents:
-                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
-                  let event = latestEvents[indexPath.item]
+        case .latestEvents:
+            if latestEvents.isEmpty {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noData", for: indexPath) as! NoDataCollectionViewCell
+                cell.configureUp()
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
+                let event = latestEvents[indexPath.item]
                 cell.configureLate(with: event)
+                return cell
+            }
 
-                  return cell
+        case .teams:
+            if teams.isEmpty {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noData", for: indexPath) as! NoDataCollectionViewCell
+//                cell.configure(with: "No Teams Available")
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamImageCell", for: indexPath) as! ImageCollectionViewCell
+                let team = teams[indexPath.item]
+                cell.configure(with: team)
+                cell.onImageTapped = { [weak self] in self?.navigateToTeamDetails(team: team) }
+                return cell
+            }
+        }
+    }
 
-              case .teams:
-                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamImageCell", for: indexPath) as! ImageCollectionViewCell
-                  let team = teams[indexPath.item]
-                  cell.configure(with:team)
-                  cell.onImageTapped = {[weak self] in self?.navigateToTeamDetails(team:team)}
-
-                  return cell
-              }
-          }
     func navigateToTeamDetails(team :Team){
         let detailCV = TeamDetailsTableViewController(nibName: "TeamDetailsTableViewController", bundle: nil)
         detailCV.team = team

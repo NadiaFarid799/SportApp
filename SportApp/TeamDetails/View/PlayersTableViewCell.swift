@@ -27,7 +27,7 @@ class PlayersTableViewCell: UITableViewCell {
         player_type.text = player.player_type
         if let imgURL = URL(string: player.player_image ?? "")
         {
-            players_image.sd_setImage(with : imgURL ,placeholderImage : UIImage(named: "placeholder" ))
+            players_image.sd_setImage(with : imgURL ,placeholderImage : UIImage(named: "football" ))
             
         }
     }

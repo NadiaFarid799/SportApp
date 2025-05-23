@@ -15,5 +15,5 @@ protocol LocalSource{
     
     func getLeagues() -> [LocalLeague]?
     
-    func isLeagueInFavorites(leagueKey: Int) -> Bool
+    func isLeagueInFavorites(leagueKey: String) -> Bool
 }
