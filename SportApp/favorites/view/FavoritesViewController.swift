@@ -13,6 +13,7 @@ class FavoritesViewController: UIViewController,UITableViewDataSource,UITableVie
     var favorites: [LocalLeague] = []
     var favoritesViewPresenter: FavoritePresenter?
 
+    @IBOutlet weak var favoriteNavBar: UINavigationBar!
     @IBOutlet weak var favoriteTableView: UITableView!
     
     override func viewDidLoad() {
@@ -34,11 +35,10 @@ class FavoritesViewController: UIViewController,UITableViewDataSource,UITableVie
         let nib = UINib(nibName: "FavoriteViewCell", bundle: nil)
         self.favoriteTableView.register(nib, forCellReuseIdentifier: "favCell")
         
-        self.title = "Favorite Leagues"
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        favoriteNavBar.topItem?.title = "Favorite Leagues"
         favoritesViewPresenter?.getLocalLeagues()
     }
     
@@ -84,9 +84,52 @@ class FavoritesViewController: UIViewController,UITableViewDataSource,UITableVie
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        favoritesViewPresenter?.onSelectCell()
+    }
+    
     func updateLeagues(leagues: [LocalLeague]) {
         favorites = leagues
         favoriteTableView.reloadData()
+    }
+    
+    func naviagateToLeagues() {
+        
+        guard let indexPath = favoriteTableView.indexPathForSelectedRow else {
+            print("cant accure index path")
+            return
+        }
+        
+        let league  = favorites[indexPath.row]
+        
+        let leagueDetailsVC = LeagueDetailsCollectionViewController(nibName: "LeagueDetailsCollectionViewController", bundle: nil)
+        
+        leagueDetailsVC.leagueId = String(league.leagueKey)
+        leagueDetailsVC.sport = league.sportName
+        leagueDetailsVC.leagueName = league.leagueName
+        
+        self.navigationController?.pushViewController(leagueDetailsVC, animated: true)
+    }
+    
+    func fireConnectionAlert() {
+        let alert = UIAlertController(
+            title: "No Internet Connection",
+            message: "Please check your internet settings and try again.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+            // Open the Settings app
+            if let url = URL(string: UIApplication.openSettingsURLString),
+               UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // Present the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
 }

@@ -10,4 +10,8 @@ import Foundation
 protocol FavoriteViewContract {
     
     func updateLeagues(leagues: [LocalLeague])
+    
+    func naviagateToLeagues()
+    
+    func fireConnectionAlert()
 }

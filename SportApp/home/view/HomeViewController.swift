@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController:UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var homeScreenNavBar: UINavigationBar!
     @IBOutlet weak var sportsCollectionView: UICollectionView!
     
     let sports = [
@@ -28,6 +29,11 @@ class HomeViewController:UIViewController,UICollectionViewDataSource,UICollectio
         //MARK: CustomCellView with Nib File
         let nib = UINib(nibName: "SportViewCell", bundle: nil)
         sportsCollectionView.register(nib, forCellWithReuseIdentifier: "sportCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        homeScreenNavBar.topItem?.title
+            = "Choose your favorite sport"
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

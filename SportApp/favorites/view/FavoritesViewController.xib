@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesViewController" customModule="SportApp" customModuleProvider="target">
             <connections>
+                <outlet property="favoriteNavBar" destination="x59-8D-nLQ" id="ohY-jp-v70"/>
                 <outlet property="favoriteTableView" destination="Whb-5N-yFV" id="Afh-B5-SP9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,19 +21,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Whb-5N-yFV">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x59-8D-nLQ">
+                    <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <items>
+                        <navigationItem title="Favorite Leagues" id="GPl-Lw-AMK"/>
+                    </items>
+                </navigationBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Whb-5N-yFV" secondAttribute="trailing" id="6yc-dh-rwK"/>
-                <constraint firstItem="Whb-5N-yFV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="HoI-Sf-70a"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Whb-5N-yFV" secondAttribute="bottom" id="jN9-L9-cVZ"/>
-                <constraint firstItem="Whb-5N-yFV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yeF-CL-bMa"/>
+                <constraint firstItem="Whb-5N-yFV" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Dpb-Qj-YuZ"/>
+                <constraint firstItem="x59-8D-nLQ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="PGj-IL-9B4"/>
+                <constraint firstItem="x59-8D-nLQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Wk1-XA-cKV"/>
+                <constraint firstItem="Whb-5N-yFV" firstAttribute="top" secondItem="x59-8D-nLQ" secondAttribute="bottom" symbolic="YES" id="ZiW-Qb-rAa"/>
+                <constraint firstItem="Whb-5N-yFV" firstAttribute="top" secondItem="x59-8D-nLQ" secondAttribute="bottom" id="beg-wC-GTi"/>
+                <constraint firstItem="x59-8D-nLQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="59" id="cp0-OW-PfW"/>
+                <constraint firstItem="Whb-5N-yFV" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="hOB-CS-OzS"/>
+                <constraint firstItem="Whb-5N-yFV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rzY-DK-ec1"/>
             </constraints>
-            <point key="canvasLocation" x="131" y="-11"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>
     </objects>
     <resources>

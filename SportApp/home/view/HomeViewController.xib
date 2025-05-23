@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="SportApp" customModuleProvider="target">
             <connections>
+                <outlet property="homeScreenNavBar" destination="STf-5C-acg" id="2CU-FJ-ype"/>
                 <outlet property="sportsCollectionView" destination="nor-MG-u4k" id="EAt-cw-zIV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
