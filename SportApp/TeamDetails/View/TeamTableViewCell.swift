@@ -16,8 +16,11 @@ class TeamTableViewCell: UITableViewCell {
     @IBOutlet weak var caach_label: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        coach_image.layer.cornerRadius = coach_image.frame.height / 2
-        coach_image.clipsToBounds = true
+//        coach_image.layer.cornerRadius = coach_image.frame.height / 2
+//        coach_image.clipsToBounds = true
+//        self.layer.cornerRadius = 15
+//        self.layer.masksToBounds = true
+
         // Initialization code
     }
     

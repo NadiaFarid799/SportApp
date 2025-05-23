@@ -23,6 +23,20 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         leaguesTableView.dataSource = self
         leaguesTableView.delegate = self
         
+        
+        let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.white// background color
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.black] // title color
+
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.titleTextAttributes = [
+               .foregroundColor: UIColor.white, // or any color you prefer
+               .font: UIFont.boldSystemFont(ofSize: 20) // optional: customize font
+           ]
         //MARK: Initialize Presenter
         leaguesViewPresenter = LeaguesPresenter(leagueViewContract: self, remoteService: LeagueService())
         

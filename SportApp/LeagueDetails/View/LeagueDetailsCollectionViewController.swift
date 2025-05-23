@@ -66,7 +66,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     var favoriteButton: UIBarButtonItem {
             let image = UIImage(named: isFavorite ? "outlineFavorite" : "favorite")
         let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(toggleFavorite))
-       // button.tintColor = .tintColor
+       // button.tintColor = .yellow
       //  button.image = UIImage(syste)
           //  button.tintColor = .green
             return button
@@ -93,15 +93,15 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         
         let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.white // background color
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.purple] // title color
+        appearance.backgroundColor = UIColor.white// background color
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.black] // title color
 
             navigationController?.navigationBar.standardAppearance = appearance
             navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//            navigationController?.navigationBar.compactAppearance = appearance
-//            navigationController?.navigationBar.tintColor = UIColor.
+            navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = UIColor.black
         navigationController?.navigationBar.titleTextAttributes = [
-               .foregroundColor: UIColor.purple, // or any color you prefer
+               .foregroundColor: UIColor.white, // or any color you prefer
                .font: UIFont.boldSystemFont(ofSize: 20) // optional: customize font
            ]
         let nib = UINib(nibName: "UpEventCollectionViewCell", bundle: nil)
@@ -113,7 +113,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         
         collectionView.register(nib2, forCellWithReuseIdentifier: "teamImageCell")
         
+        let nib3 = UINib(nibName: "latestCollectionViewCell", bundle: nil)
         
+        
+        collectionView.register(nib3, forCellWithReuseIdentifier: "lateEventCell")
         
         navigationItem.rightBarButtonItem = favoriteButton
 
@@ -294,7 +297,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
                                               heightDimension: .estimated(250))
         
         let item = NSCollectionLayoutItem (layoutSize: itemSize)
-        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(35), top: .fixed(15), trailing: nil, bottom: .fixed(5))
+        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(10), top: .fixed(15), trailing: nil, bottom: .fixed(5))
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .estimated(100))
@@ -404,7 +407,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
             case 0:
                 headerView.title_label.text = "Upcoming Events" // Assuming you have a titleLabel in your header view
             case 1:
-                headerView.title_label.text = "Late Middle Events"
+                headerView.title_label.text = "LatestEvents"
             case 2:
                 headerView.title_label.text = "Teams"
             default:

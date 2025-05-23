@@ -21,7 +21,10 @@ class TeamDetailsTableViewController: UITableViewController {
         
         let nib2 = UINib(nibName: "TeamTableViewCell", bundle: nil)
         tableView.register(nib2, forCellReuseIdentifier: "teamcell")
-        tableView.rowHeight = 300
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        //    tableView.estimatedRowHeight = 100
+        //   tableView.rowHeight = 300
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -47,7 +50,33 @@ class TeamDetailsTableViewController: UITableViewController {
         }
         //  return team?.players?.count ?? 0
     }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 300
+        }else {
+            return 100
+        }
+    }
     
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 20
+//    }
+    
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let spacer  = UIView()
+        spacer.backgroundColor = .clear
+        return spacer
+    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 2{
+            return "Players"
+            
+    }
+    return nil
+        
+    }
+   
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
