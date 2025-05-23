@@ -14,8 +14,12 @@ class PlayersTableViewCell: UITableViewCell {
     @IBOutlet weak var players_image: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        players_image.layer.cornerRadius = players_image.frame.height / 2
-        players_image.clipsToBounds = true
+//        players_image.layer.cornerRadius = players_image.frame.height / 2
+//        players_image.clipsToBounds = true
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 500, right: 0))
+    
+        self.layer.cornerRadius = 12
+        self.layer.masksToBounds = true
         // Initialization code
     }
     func configure (with player : Players){
@@ -32,5 +36,14 @@ class PlayersTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//
+//        if let tableView = self.superview as?UITableView,
+//           let indexpath = tableView.indexPath(for: self),
+//           indexpath.section == 1 {
+//            contentView.frame.inset(by: UIEdgeInsets(top: 50, left: 0, bottom: 100, right: 0))
+//        }
+//    }
     
 }
