@@ -10,9 +10,18 @@
       }
     },
     {
+      "identity" : "reachability.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ashleymills/Reachability.swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "21d1dc412cfecbe6e34f1f4c4eb88d3f912654a6"
+      }
+    },
+    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:SDWebImage/SDWebImage.git",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
         "revision" : "b6aa428b7d01a36e7857b09b4acb320ad7ee5170",
         "version" : "5.14.0"
