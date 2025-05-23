@@ -8,6 +8,7 @@ class LeaguesViewCell: UITableViewCell {
     @IBOutlet weak var favIcon: UIButton!
     
     var isFilled = false
+    var delegate: LeagueCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +32,7 @@ class LeaguesViewCell: UITableViewCell {
         
         favIcon.setImage(UIImage(named: imageName), for: .normal)
         
+        delegate?.onFavoriteClicked(in: self)
     }
     
     

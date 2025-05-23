@@ -11,10 +11,12 @@ class LeaguesPresenter{
     
     var leagueViewContract: LeagueViewContract
     var remoteService: RemoteService
+    var localSource: LocalSource
     
-    init(leagueViewContract: LeagueViewContract, remoteService: RemoteService) {
+    init(leagueViewContract: LeagueViewContract, remoteService: RemoteService,localSource: LocalSource) {
         self.leagueViewContract = leagueViewContract
         self.remoteService = remoteService
+        self.localSource = localSource
     }
     
     func getLeagues(sportName: String){
@@ -29,5 +31,10 @@ class LeaguesPresenter{
             }
             
         }
+    }
+    
+    func saveLeague(league: League,sportName: String, image: Data){
+        print("enterde save fucntion in the presenter")
+        localSource.saveLeague(league: league, sportName: sportName, image: image)
     }
 }

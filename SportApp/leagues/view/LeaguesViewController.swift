@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import CoreData
 
 class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,LeagueViewContract{
     
@@ -23,22 +24,15 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         leaguesTableView.dataSource = self
         leaguesTableView.delegate = self
         
+        // MARK: Setting up the dependencies for CoreData
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "LocalLeague", in: context)
         
-        let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.white// background color
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.black] // title color
-
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.tintColor = UIColor.black
-        navigationController?.navigationBar.titleTextAttributes = [
-               .foregroundColor: UIColor.white, // or any color you prefer
-               .font: UIFont.boldSystemFont(ofSize: 20) // optional: customize font
-           ]
         //MARK: Initialize Presenter
-        leaguesViewPresenter = LeaguesPresenter(leagueViewContract: self, remoteService: LeagueService())
+        leaguesViewPresenter = LeaguesPresenter(leagueViewContract: self, remoteService: LeagueService(),
+            localSource: LocalDataSource(entity: entity!, context: context)
+        )
         
         //MARK: load the League cell NibFile
         let nib = UINib(nibName: "LeaguesViewCell", bundle: nil)
@@ -73,23 +67,23 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         cell.leagueName.text = league.league_name
         cell.leagueCountry.text = league.country_name
-        guard let logo = league.league_logo else {
-            return UITableViewCell()
+        if let logo = league.league_logo {
+            cell.leagueImage.sd_setImage(with: URL(string: logo))
         }
-        cell.leagueImage.sd_setImage(with: URL(string: logo))
-        
-        
+
+        cell.delegate = self
         return cell
     }
     
     // MARK: Here we detrmine the action when cell is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let league = leagues[indexPath.row]
         
         let leagueDetailsVC = LeagueDetailsCollectionViewController(nibName: "LeagueDetailsCollectionViewController", bundle: nil)
         
         leagueDetailsVC.leagueId = String(league.league_key)
-       leagueDetailsVC.sport = self.sportName
+        leagueDetailsVC.sport = self.sportName
         leagueDetailsVC.leagueName = league.league_name
         
         self.navigationController?.pushViewController(leagueDetailsVC, animated: true)
@@ -101,11 +95,4 @@ class LeaguesViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.leaguesTableView.reloadData()
     }
     
-    
-    // MARK: Here we update the tableView When data arraives.
-    func updateLeaguess(leagues: [League]) {
-        print("hello")
-    }
-    
-
 }
