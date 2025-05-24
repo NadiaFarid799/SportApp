@@ -111,7 +111,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         let nib4 = UINib(nibName: "NoDataCollectionViewCell", bundle: nil)
         
         
-        collectionView.register(nib3, forCellWithReuseIdentifier: "noData")
+        collectionView.register(nib4, forCellWithReuseIdentifier: "noData")
         
 
         
