@@ -71,9 +71,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //MARK: Create Tab Bar Controller
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [homeVC, favoritesVC]
+        tabBarController.tabBar.backgroundColor = .white
         
         // MARK: Set Tab Bar Appearance
-        tabBarController.tabBar.tintColor = .systemPurple
+        tabBarController.tabBar.tintColor = .systemGreen
         tabBarController.tabBar.unselectedItemTintColor = .lightGray
         
         return tabBarController
