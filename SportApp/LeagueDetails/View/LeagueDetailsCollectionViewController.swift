@@ -52,7 +52,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     func showError(_ message: String) {
         DispatchQueue.main.async {
                    print("Error:", message)
-                   // show alert if needed
                }
     }
     
@@ -62,9 +61,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         case latestEvents = 1
         case teams = 2
     }
-//    let leageKey = Int(leagueId ?? 4)
-//    print(leageKey)
-  //  let favoriteImage = UIImage(named: "outlineFavorite")
+
          // MARK: - Favorite Button
     
   
@@ -72,13 +69,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
       
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-       
-     
- 
-        
         
         let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
@@ -90,8 +80,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
             navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.tintColor = UIColor.black
         navigationController?.navigationBar.titleTextAttributes = [
-               .foregroundColor: UIColor.white, // or any color you prefer
-               .font: UIFont.boldSystemFont(ofSize: 20) // optional: customize font
+               .foregroundColor: UIColor.white,
+               .font: UIFont.boldSystemFont(ofSize: 20)
            ]
         let nib = UINib(nibName: "UpEventCollectionViewCell", bundle: nil)
         
@@ -114,8 +104,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         collectionView.register(nib4, forCellWithReuseIdentifier: "noData")
         
 
-        
-        
         let headerNib = UINib(nibName: "HeaderSectionCollectionReusableView", bundle: nil)
         collectionView.register(headerNib,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -148,9 +136,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
             case 0:
                 return self.createUpcomingEventsSection()
             case 1:
-                return self.createLateMiddleEventsSection()// Assuming you have data for this
+                return self.createLateMiddleEventsSection()
             case 2:
-                return self.createTeamsSection() // Assuming you have data for teams
+                return self.createTeamsSection()
             default:
                 return nil
             }
@@ -158,13 +146,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         return layout
         
     }
-//
-//    @objc func toggleFavorite() {
-//            isFavorite.toggle()
-////            favoriteButton.image = UIImage(systemName: isFavorite ? "heart.fill" : "heart")
-//
-//        }
-//
+
     
     func updateFavoriteButton() {
         guard let leagueId = leagueId else { return }
@@ -190,7 +172,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         } else {
             // Add to favorites
             let league = League(league_key: leagueKey, league_name: leagueName, country_key: countryKey, country_name: leagueCoutry, league_surface: "", league_year: "", league_logo: "", country_logo: leagueImage)
-            let imageData = Data() // Replace with actual image data if available
+           let imageData = Data()
+            
             localDataSource?.saveLeague(league: league, sportName: sport, image: imageData)
         }
 
@@ -210,28 +193,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
         updateFavoriteButton()
         
        
-//        var favoriteButton: UIBarButtonItem {
-//            if let leagueId = leagueId {
-//                isFavorite = localDataSource!.isLeagueInFavorites(leagueKey: leagueId)
-//
-//            }
-//            if isFavorite == true {
-//                let image = UIImage(named:"favorite")
-//
-//                let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(toggleFavorite))
-//                return button
-//            }else {
-//                let image = UIImage(named:"outlineFavorite")
-//
-//                let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(toggleFavorite))
-//                return button
-//            }
-//
-//
-//
-//            }
-//
-//        navigationItem.rightBarButtonItem = favoriteButton
 
      
         
@@ -310,7 +271,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     // MARK: - Teams Section Layout
     
     func createTeamsSection() -> NSCollectionLayoutSection {
-        // Assuming circular images, adjust size as needed
+       
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100),
                                               heightDimension: .estimated(80))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -367,16 +328,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     
     
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
     // MARK: UICollectionViewDataSource
     
@@ -406,42 +358,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
 
     }
     
-    
-    
-    
-    
-//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//        guard let sectionType = LeagueSection(rawValue: indexPath.section) else {
-//                  fatalError("Invalid section")
-//              }
-//
-//              switch sectionType {
-//              case .upcomingEvents:
-//
-//                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
-//                  let event = upcomingEvents[indexPath.item]
-//                 cell.configureUp(with: event)
-//
-//
-//                  return cell
-//
-//              case .latestEvents:
-//                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! UpEventCollectionViewCell
-//                  let event = latestEvents[indexPath.item]
-//                cell.configureLate(with: event)
-//
-//                  return cell
-//
-//              case .teams:
-//                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamImageCell", for: indexPath) as! ImageCollectionViewCell
-//                  let team = teams[indexPath.item]
-//                  cell.configure(with:team)
-//                  cell.onImageTapped = {[weak self] in self?.navigateToTeamDetails(team:team)}
-//
-//                  return cell
-//              }
-//          }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
@@ -522,34 +438,5 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,LeagueDe
     }
 
     // MARK: UICollectionViewDelegate
-    
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
-    
+  
 }

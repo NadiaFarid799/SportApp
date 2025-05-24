@@ -34,16 +34,7 @@ class PlayersTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        if let tableView = self.superview as?UITableView,
-//           let indexpath = tableView.indexPath(for: self),
-//           indexpath.section == 1 {
-//            contentView.frame.inset(by: UIEdgeInsets(top: 50, left: 0, bottom: 100, right: 0))
-//        }
-//    }
+
     
 }
